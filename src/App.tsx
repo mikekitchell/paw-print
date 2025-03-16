@@ -4,6 +4,7 @@ import { IonReactRouter } from "@ionic/react-router";
 import { Redirect, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import AddActivityPage from "./pages/AddActivityPage";
+import ActivityLogPage from "./pages/ActivityLogPage";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -36,8 +37,11 @@ const App: React.FC = () => (
         <Route exact path="/add-activity">
           <AddActivityPage />
         </Route>
+        <Route exact path="/activity-log">
+          <ActivityLogPage />
+        </Route>
         <Route exact path="/">
-          <Redirect to="/home" />
+          <Redirect to="/activity-log" />
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>
