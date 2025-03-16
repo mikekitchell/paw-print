@@ -18,7 +18,7 @@ import {
   IonLabel,
   IonList,
 } from "@ionic/react";
-import { paw, nutrition, walk, bed, school, add, list } from "ionicons/icons";
+import { paw, restaurant, walk, bed, school, add, list } from "ionicons/icons";
 import { Storage } from "@capacitor/storage";
 import { useHistory } from "react-router-dom";
 
@@ -89,7 +89,7 @@ const HomePage: React.FC = () => {
       case "potty":
         return paw;
       case "feeding":
-        return nutrition;
+        return restaurant;
       case "walk":
         return walk;
       case "sleep":
@@ -201,7 +201,7 @@ const HomePage: React.FC = () => {
                       margin: "0 auto 8px auto",
                     }}
                   >
-                    <IonIcon icon={nutrition} size="large" color="light" />
+                    <IonIcon icon={restaurant} size="large" color="light" />
                   </div>
                   <p>{activityCounts.feeding} Meals</p>
                 </IonCol>
