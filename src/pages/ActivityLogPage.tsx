@@ -250,7 +250,8 @@ const ActivityLogPage: React.FC = () => {
             <IonText color="medium">
               <h2 className="text-xl font-medium mb-2">No activities yet</h2>
               <p className="mb-4">
-                Start tracking your pet's activities by adding your first entry.
+                Start tracking your pet&apos;s activities by adding your first
+                entry.
               </p>
             </IonText>
             <IonButton

@@ -125,7 +125,7 @@ const HomePage: React.FC = () => {
             </IonCardHeader>
             <IonCardContent>
               <p className="mb-4">
-                Track your pet's daily activities including potty breaks,
+                Track your pet&apos;s daily activities including potty breaks,
                 feeding, walks, sleep, and training sessions.
               </p>
               <div className="flex flex-col space-y-3">
