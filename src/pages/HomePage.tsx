@@ -17,6 +17,8 @@ import {
   IonItem,
   IonLabel,
   IonList,
+  IonItemGroup,
+  IonItemDivider,
 } from "@ionic/react";
 import { paw, restaurant, walk, bed, school, add, list } from "ionicons/icons";
 import { Storage } from "@capacitor/storage";
@@ -30,6 +32,17 @@ interface ActivityCount {
   training: number;
 }
 
+interface Activity {
+  id: string;
+  type: string;
+  timestamp: string;
+  details: any;
+}
+
+interface GroupedActivities {
+  [date: string]: Activity[];
+}
+
 const HomePage: React.FC = () => {
   const [activityCounts, setActivityCounts] = useState<ActivityCount>({
     potty: 0,
@@ -38,7 +51,10 @@ const HomePage: React.FC = () => {
     sleep: 0,
     training: 0,
   });
-  const [recentActivities, setRecentActivities] = useState<any[]>([]);
+  const [recentActivities, setRecentActivities] = useState<Activity[]>([]);
+  const [groupedActivities, setGroupedActivities] = useState<GroupedActivities>(
+    {}
+  );
   const history = useHistory();
 
   useEffect(() => {
@@ -77,10 +93,25 @@ const HomePage: React.FC = () => {
           .slice(0, 3);
 
         setRecentActivities(recent);
+
+        // Group recent activities by date
+        const grouped = groupActivitiesByDate(recent);
+        setGroupedActivities(grouped);
       }
     } catch (error) {
       console.error("Failed to load activity data:", error);
     }
+  };
+
+  const groupActivitiesByDate = (activities: Activity[]): GroupedActivities => {
+    return activities.reduce((groups: GroupedActivities, activity) => {
+      const date = new Date(activity.timestamp).toLocaleDateString();
+      if (!groups[date]) {
+        groups[date] = [];
+      }
+      groups[date].push(activity);
+      return groups;
+    }, {});
   };
 
   // Get activity icon
@@ -123,6 +154,22 @@ const HomePage: React.FC = () => {
   const formatTime = (timestamp: string) => {
     const date = new Date(timestamp);
     return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  };
+
+  // Format date
+  const formatDate = (dateString: string) => {
+    const today = new Date().toLocaleDateString();
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    const yesterdayString = yesterday.toLocaleDateString();
+
+    if (dateString === today) {
+      return "Today";
+    } else if (dateString === yesterdayString) {
+      return "Yesterday";
+    } else {
+      return dateString;
+    }
   };
 
   return (
@@ -296,6 +343,13 @@ const HomePage: React.FC = () => {
                   <IonLabel>
                     <h2 className="ion-text-capitalize">{activity.type}</h2>
                     <p>{formatTime(activity.timestamp)}</p>
+                  </IonLabel>
+                  <IonLabel slot="end" className="ion-text-right">
+                    <p style={{ fontSize: "12px", color: "#666" }}>
+                      {formatDate(
+                        new Date(activity.timestamp).toLocaleDateString()
+                      )}
+                    </p>
                   </IonLabel>
                 </IonItem>
               ))
