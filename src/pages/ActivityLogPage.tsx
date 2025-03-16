@@ -19,6 +19,8 @@ import {
   IonFabButton,
   IonSpinner,
   IonText,
+  IonButtons,
+  IonBackButton,
 } from "@ionic/react";
 import { Storage } from "@capacitor/storage";
 import { add, paw, restaurant, walk, moon, school } from "ionicons/icons";
@@ -232,7 +234,10 @@ const ActivityLogPage: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle className="text-xl font-semibold">Activity Log</IonTitle>
+          <IonButtons slot="start">
+            <IonBackButton defaultHref="/home" />
+          </IonButtons>
+          <IonTitle>Activity Log</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
