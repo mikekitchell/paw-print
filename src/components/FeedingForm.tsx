@@ -12,7 +12,6 @@ interface FeedingFormProps {
   setFoodAmount: (amount: string) => void;
   foodType: string;
   setFoodType: (type: string) => void;
-  style?: any;
 }
 
 const FeedingForm: React.FC<FeedingFormProps> = ({
@@ -20,53 +19,26 @@ const FeedingForm: React.FC<FeedingFormProps> = ({
   setFoodAmount,
   foodType,
   setFoodType,
-  style = {},
 }) => {
-  const itemStyle = {
-    "--min-height": "60px",
-    "--padding-top": "8px",
-    "--padding-bottom": "8px",
-    marginBottom: "8px",
-    ...style.item,
-  };
-
-  const labelStyle = {
-    fontSize: "1.1rem",
-    fontWeight: "500",
-    ...style.label,
-  };
-
-  const selectStyle = {
-    fontSize: "1.1rem",
-    "--padding-start": "8px",
-    "--padding-end": "8px",
-    ...style.select,
-  };
-
-  const inputStyle = {
-    fontSize: "1.1rem",
-    ...style.input,
-  };
-
   return (
     <>
-      <IonItem style={itemStyle}>
-        <IonLabel position="stacked" style={labelStyle}>
+      <IonItem className="form-item">
+        <IonLabel position="stacked" className="form-label">
           Amount
         </IonLabel>
         <IonInput
           value={foodAmount}
           onIonChange={(e) => setFoodAmount(e.detail.value!)}
-          style={inputStyle}
+          className="form-input"
           placeholder="e.g., 1/2 cup"
         ></IonInput>
       </IonItem>
-      <IonItem style={itemStyle}>
-        <IonLabel style={labelStyle}>Food Type</IonLabel>
+      <IonItem className="form-item">
+        <IonLabel className="form-label">Food Type</IonLabel>
         <IonSelect
           value={foodType}
           onIonChange={(e) => setFoodType(e.detail.value)}
-          style={selectStyle}
+          className="text-lg"
           interface="action-sheet"
         >
           <IonSelectOption value="kibble">Kibble</IonSelectOption>

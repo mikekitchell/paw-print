@@ -6,7 +6,6 @@ interface TrainingFormProps {
   setTrainingCommand: (command: string) => void;
   trainingSuccess: boolean;
   setTrainingSuccess: (success: boolean) => void;
-  style?: any;
 }
 
 const TrainingForm: React.FC<TrainingFormProps> = ({
@@ -14,49 +13,26 @@ const TrainingForm: React.FC<TrainingFormProps> = ({
   setTrainingCommand,
   trainingSuccess,
   setTrainingSuccess,
-  style = {},
 }) => {
-  const itemStyle = {
-    "--min-height": "60px",
-    "--padding-top": "8px",
-    "--padding-bottom": "8px",
-    marginBottom: "8px",
-    ...style.item,
-  };
-
-  const labelStyle = {
-    fontSize: "1.1rem",
-    fontWeight: "500",
-    ...style.label,
-  };
-
-  const inputStyle = {
-    fontSize: "1.1rem",
-    ...style.input,
-  };
-
   return (
     <>
-      <IonItem style={itemStyle}>
-        <IonLabel position="stacked" style={labelStyle}>
+      <IonItem className="form-item">
+        <IonLabel position="stacked" className="form-label">
           Command/Skill
         </IonLabel>
         <IonInput
           value={trainingCommand}
           onIonChange={(e) => setTrainingCommand(e.detail.value!)}
-          style={inputStyle}
+          className="form-input"
           placeholder="Enter command or skill"
         ></IonInput>
       </IonItem>
-      <IonItem style={itemStyle}>
-        <IonLabel style={labelStyle}>Success</IonLabel>
+      <IonItem className="form-item">
+        <IonLabel className="form-label">Success</IonLabel>
         <IonToggle
           checked={trainingSuccess}
           onIonChange={(e) => setTrainingSuccess(e.detail.checked)}
-          style={{
-            "--handle-width": "28px",
-            "--handle-height": "28px",
-          }}
+          className="h-7 w-14"
         ></IonToggle>
       </IonItem>
     </>

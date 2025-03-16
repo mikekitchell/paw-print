@@ -23,40 +23,6 @@ import WalkForm from "../components/WalkForm";
 import SleepForm from "../components/SleepForm";
 import TrainingForm from "../components/TrainingForm";
 
-const pageStyles = {
-  title: {
-    fontSize: "1.2rem",
-    fontWeight: "600",
-  },
-  list: {
-    padding: "16px",
-  },
-  item: {
-    "--min-height": "60px",
-    "--padding-top": "8px",
-    "--padding-bottom": "8px",
-    marginBottom: "8px",
-  },
-  label: {
-    fontSize: "1.1rem",
-    fontWeight: "500",
-  },
-  select: {
-    fontSize: "1.1rem",
-    "--padding-start": "8px",
-    "--padding-end": "8px",
-  },
-  input: {
-    fontSize: "1.1rem",
-  },
-  saveButton: {
-    margin: "24px 16px",
-    "--padding-top": "20px",
-    "--padding-bottom": "20px",
-    fontSize: "1.1rem",
-  },
-};
-
 const AddActivityPage: React.FC = () => {
   const history = useHistory();
   const [activityType, setActivityType] = useState<string>("potty");
@@ -173,20 +139,19 @@ const AddActivityPage: React.FC = () => {
           <IonButtons slot="start">
             <IonBackButton defaultHref="/activity-log" />
           </IonButtons>
-          <IonTitle style={pageStyles.title}>Add Activity</IonTitle>
+          <IonTitle className="text-xl font-semibold">Add Activity</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonList style={pageStyles.list}>
+        <IonList className="p-4">
           {/* Activity Type Selector */}
           <ActivityTypeSelector
             activityType={activityType}
             setActivityType={setActivityType}
-            style={pageStyles}
           />
 
           {/* Current Time Display */}
-          <TimestampDisplay timestamp={timestamp} style={pageStyles} />
+          <TimestampDisplay timestamp={timestamp} />
 
           {/* Activity-specific form fields */}
           {activityType === "potty" && (
@@ -197,7 +162,6 @@ const AddActivityPage: React.FC = () => {
               setPottySuccess={setPottySuccess}
               pottyLocation={pottyLocation}
               setPottyLocation={setPottyLocation}
-              style={pageStyles}
             />
           )}
 
@@ -207,7 +171,6 @@ const AddActivityPage: React.FC = () => {
               setFoodAmount={setFoodAmount}
               foodType={foodType}
               setFoodType={setFoodType}
-              style={pageStyles}
             />
           )}
 
@@ -217,7 +180,6 @@ const AddActivityPage: React.FC = () => {
               setWalkDuration={setWalkDuration}
               walkNotes={walkNotes}
               setWalkNotes={setWalkNotes}
-              style={pageStyles}
             />
           )}
 
@@ -225,7 +187,6 @@ const AddActivityPage: React.FC = () => {
             <SleepForm
               sleepDuration={sleepDuration}
               setSleepDuration={setSleepDuration}
-              style={pageStyles}
             />
           )}
 
@@ -235,7 +196,6 @@ const AddActivityPage: React.FC = () => {
               setTrainingCommand={setTrainingCommand}
               trainingSuccess={trainingSuccess}
               setTrainingSuccess={setTrainingSuccess}
-              style={pageStyles}
             />
           )}
         </IonList>
@@ -244,7 +204,7 @@ const AddActivityPage: React.FC = () => {
         <IonButton
           expand="block"
           onClick={saveActivity}
-          style={pageStyles.saveButton}
+          className="save-button"
         >
           Save Activity
         </IonButton>
@@ -255,7 +215,7 @@ const AddActivityPage: React.FC = () => {
           onDidDismiss={() => setShowToast(false)}
           message={toastMessage}
           duration={2000}
-          style={{ fontSize: "1.1rem" }}
+          className="text-lg"
         />
       </IonContent>
     </IonPage>

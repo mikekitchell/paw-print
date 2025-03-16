@@ -1,0 +1,40 @@
+/* Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ionic Variables and Theming */
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/react/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/react/css/normalize.css";
+@import "@ionic/react/css/structure.css";
+@import "@ionic/react/css/typography.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/react/css/padding.css";
+@import "@ionic/react/css/float-elements.css";
+@import "@ionic/react/css/text-alignment.css";
+@import "@ionic/react/css/text-transformation.css";
+@import "@ionic/react/css/flex-utils.css";
+@import "@ionic/react/css/display.css";
+
+/* Custom styles */
+@layer components {
+  .form-input {
+    @apply text-lg py-2 px-3 rounded-md;
+  }
+  
+  .form-label {
+    @apply text-lg font-medium mb-1;
+  }
+  
+  .form-item {
+    @apply mb-4 py-2;
+  }
+  
+  .save-button {
+    @apply text-lg py-5 my-6 mx-4 font-medium;
+  }
+} 

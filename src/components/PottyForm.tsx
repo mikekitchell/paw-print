@@ -14,7 +14,6 @@ interface PottyFormProps {
   setPottySuccess: (success: boolean) => void;
   pottyLocation: string;
   setPottyLocation: (location: string) => void;
-  style?: any;
 }
 
 const PottyForm: React.FC<PottyFormProps> = ({
@@ -24,37 +23,15 @@ const PottyForm: React.FC<PottyFormProps> = ({
   setPottySuccess,
   pottyLocation,
   setPottyLocation,
-  style = {},
 }) => {
-  const itemStyle = {
-    "--min-height": "60px",
-    "--padding-top": "8px",
-    "--padding-bottom": "8px",
-    marginBottom: "8px",
-    ...style.item,
-  };
-
-  const labelStyle = {
-    fontSize: "1.1rem",
-    fontWeight: "500",
-    ...style.label,
-  };
-
-  const selectStyle = {
-    fontSize: "1.1rem",
-    "--padding-start": "8px",
-    "--padding-end": "8px",
-    ...style.select,
-  };
-
   return (
     <>
-      <IonItem style={itemStyle}>
-        <IonLabel style={labelStyle}>Type</IonLabel>
+      <IonItem className="form-item">
+        <IonLabel className="form-label">Type</IonLabel>
         <IonSelect
           value={pottyType}
           onIonChange={(e) => setPottyType(e.detail.value)}
-          style={selectStyle}
+          className="text-lg"
           interface="action-sheet"
         >
           <IonSelectOption value="pee">Pee</IonSelectOption>
@@ -62,23 +39,20 @@ const PottyForm: React.FC<PottyFormProps> = ({
           <IonSelectOption value="both">Both</IonSelectOption>
         </IonSelect>
       </IonItem>
-      <IonItem style={itemStyle}>
-        <IonLabel style={labelStyle}>Success</IonLabel>
+      <IonItem className="form-item">
+        <IonLabel className="form-label">Success</IonLabel>
         <IonToggle
           checked={pottySuccess}
           onIonChange={(e) => setPottySuccess(e.detail.checked)}
-          style={{
-            "--handle-width": "28px",
-            "--handle-height": "28px",
-          }}
+          className="h-7 w-14"
         ></IonToggle>
       </IonItem>
-      <IonItem style={itemStyle}>
-        <IonLabel style={labelStyle}>Location</IonLabel>
+      <IonItem className="form-item">
+        <IonLabel className="form-label">Location</IonLabel>
         <IonSelect
           value={pottyLocation}
           onIonChange={(e) => setPottyLocation(e.detail.value)}
-          style={selectStyle}
+          className="text-lg"
           interface="action-sheet"
         >
           <IonSelectOption value="outside">Outside</IonSelectOption>
