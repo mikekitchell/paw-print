@@ -110,17 +110,17 @@ const ActivityLogPage: React.FC = () => {
   const getActivityColor = (type: string) => {
     switch (type) {
       case "potty":
-        return "success";
+        return "#3398db"; // Blue
       case "feeding":
-        return "warning";
+        return "#2dcc71"; // Green
       case "walk":
-        return "primary";
+        return "#ff7a77"; // Red/Pink
       case "sleep":
-        return "tertiary";
+        return "#f2aa3d"; // Yellow/Orange
       case "training":
-        return "secondary";
+        return "#465864"; // Dark Blue/Gray
       default:
-        return "medium";
+        return "#3398db";
     }
   };
 
@@ -284,9 +284,16 @@ const ActivityLogPage: React.FC = () => {
                     <div className="flex items-center w-full">
                       <div className="mr-3">
                         <div
-                          className={`bg-${getActivityColor(
-                            activity.type
-                          )} rounded-full p-2 flex items-center justify-center`}
+                          style={{
+                            backgroundColor: getActivityColor(activity.type),
+                            borderRadius: "50%",
+                            padding: "8px",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            width: "36px",
+                            height: "36px",
+                          }}
                         >
                           <IonIcon
                             icon={getActivityIcon(activity.type)}
@@ -304,7 +311,10 @@ const ActivityLogPage: React.FC = () => {
                               : activity.type}
                           </h3>
                           <IonBadge
-                            color={getActivityColor(activity.type)}
+                            style={{
+                              backgroundColor: getActivityColor(activity.type),
+                              padding: "4px 8px",
+                            }}
                             className="px-2 py-1"
                           >
                             {formatTime(activity.timestamp)}
